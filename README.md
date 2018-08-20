@@ -61,7 +61,7 @@ The percentage should be calculated using the following algorithm:
   - As a customer I want to view a list of tickets when I click on an event
   - As a customer I want to view ticket details when I click on a ticket in the ticket list
   - As a customer I want to see what the fraud-risk is for a specific ticket
-  - As a customer I want to be able to login, or sign up if I don't have an account yet
+  √ As a customer I want to be able to login, or sign up if I don't have an account yet
   - As a logged in customer I want to add a ticket (for a specific event) 
       that shows up on the event page with a title, picture, price and description
   - As an author of the ticket I want to be able to edit a ticket's description, price and picture
