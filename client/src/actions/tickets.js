@@ -43,11 +43,12 @@ export const addTicket = (eventId, ticket) => (dispatch, getState) => {
     .set('Authorization', `Bearer ${jwt}`)
     .send(ticket)
     .then(response => {
-    dispatch({
-      type: ADD_TICKET,
-      payload: response.body
+      dispatch({
+        type: ADD_TICKET,
+        payload: response.body
+      })
     })
-  })
+    .catch(err => alert(err))
 }
 
 export const updateTicket = (ticketId, updates) => (dispatch, getState) => {

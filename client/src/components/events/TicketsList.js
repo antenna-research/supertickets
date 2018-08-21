@@ -3,13 +3,22 @@ import {withRouter} from 'react-router'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {userId} from '../../jwt'
-// import {getEvent} from '../../actions/events'
 import {getTickets} from '../../actions/tickets'
+import AddTicketForm from './AddTicketForm'
 
 class TicketsList extends PureComponent {
+  state = {
+    showComponent: false,
+  }
 
   componentWillMount() {
     this.props.getTickets( this.props.match.params.id )
+  }
+
+  _onButtonClick = () => {
+    this.setState({
+      showComponent: true,
+    });
   }
 
   render() {
@@ -25,7 +34,16 @@ class TicketsList extends PureComponent {
       )}
       </ul>
 
-      Tickets List
+      {  
+        !this.state.showComponent &&
+        <button onClick={this._onButtonClick}>List a ticket for this event</button>
+      }
+      {  
+        this.state.showComponent &&
+        <AddTicketForm eventId={this.props.match.params.id} />
+      }
+
+
     </div>)
   }
 

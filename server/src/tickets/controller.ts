@@ -34,7 +34,7 @@ export default class TicketController {
     @Param('id') eventId, //: number,
     @CurrentUser() user: User
   ) {
-    const thisEvent = await Event.findOne(eventId)
+    const thisEvent = await Event.findOneById( eventId )
     if (!thisEvent) throw new NotFoundError(`Event does not exist`)
 
     ticket.event = thisEvent
