@@ -3,11 +3,12 @@ import {withRouter} from 'react-router'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {userId} from '../../jwt'
+import {getEvents} from '../../actions/events'
 
 class EventsList extends PureComponent {
 
   componentWillMount(props) {
-    // this.props.fetchAllAdverts()
+    this.props.getEvents()
   }
 
   render() {
@@ -19,10 +20,9 @@ class EventsList extends PureComponent {
 }
 
 const mapStateToProps = function (state, props) {
-  // return {
-  //   adverts: state.adverts,
-  // }
+  return {
+    events: state.events,
+  }
 }
 
-// export default connect(mapStateToProps, { fetchAllAdverts })( EventsList )
-export default EventsList
+export default connect(mapStateToProps, { getEvents })( EventsList )
