@@ -11,7 +11,7 @@ export const getEvents = () => (dispatch) => {
     .get(`${baseUrl}/events`)
     .then(response => dispatch({
       type: GET_EVENTS,
-      payload: response.body
+      payload: response.body.events
     }))
     .catch(err => alert(err))
 }

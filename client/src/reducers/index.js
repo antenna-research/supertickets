@@ -3,8 +3,8 @@ import login from './login'
 import currentUser from './currentUser'
 import signup from './signup'
 import events from './events'
+import event from './event'
 import ticket from './ticket'
-import tickets from './tickets'
 
 export default {
   users,
@@ -12,6 +12,6 @@ export default {
   currentUser,
   signup,
   events,
-  ticket,
-  tickets
+  event,
+  ticket
 }

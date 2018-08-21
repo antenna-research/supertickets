@@ -2,19 +2,20 @@ import React, {PureComponent} from 'react'
 import {withRouter} from 'react-router'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {userId} from '../../jwt'
 import {getEvents} from '../../actions/events'
 
 class EventsList extends PureComponent {
 
-  componentWillMount(props) {
+  componentWillMount() {
     this.props.getEvents()
   }
 
   render() {
-    return (<div>
-      Events List
-    </div>)
+    return (<div><ul>
+      { this.props.events.map(
+        (event) => <li><a href={ `/event/${event.id}` }> { event.name }, { event.startDate }, { event.endDate } </a></li>
+      )}
+    </ul></div>)
   }
 
 }

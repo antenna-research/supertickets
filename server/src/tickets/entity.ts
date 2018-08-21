@@ -3,7 +3,7 @@ import Event from '../events/entity'
 import User from '../users/entity'
 
 @Entity()
-export class Ticket extends BaseEntity {
+export default class Ticket extends BaseEntity {
 
   @PrimaryGeneratedColumn()
   id?: number

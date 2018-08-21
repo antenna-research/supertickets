@@ -2,7 +2,7 @@ import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, OneToMany } from 't
 import { Exclude } from 'class-transformer';
 import { MinLength, IsString, IsEmail } from 'class-validator';
 import * as bcrypt from 'bcrypt'
-import { Ticket, Comment } from '../tickets/entity'
+import Ticket, { Comment } from '../tickets/entity'
 
 @Entity()
 export default class User extends BaseEntity {

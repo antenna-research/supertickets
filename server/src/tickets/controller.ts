@@ -1,5 +1,5 @@
-import { JsonController, Get, Param, Post, HttpCode, Body, Put, NotFoundError, CurrentUser } from 'routing-controllers'
-import { Ticket } from './entity'
+import { JsonController, Get, Param, Post, HttpCode, Body, Put, NotFoundError, CurrentUser, ForbiddenError } from 'routing-controllers'
+import Ticket from './entity'
 import Event from '../events/entity'
 import User from '../users/entity'
 
@@ -10,17 +10,18 @@ export default class TicketController {
   // As a customer I want to view a list of tickets when I click on an event
   @Get('/events/:id')
   getTickets(
-    @Param('id') id: number
+    @Param('id') id: any
   ) {
-    return Ticket.find({ where: { eventId: id } })
+    return Event.find({ where: { id } })
   }
 
   // As a customer I want to view ticket details when I click on a ticket in the ticket list
   @Get('/tickets/:id')
   getTicket(
-    @Param('id') id
+    @Param('id') id: any
   ) {
-    return Ticket.findOne(id)
+    return Ticket.find({ where: { id } })
+    console.log('id', id)
   }
 
   // As a *logged in* customer I want to add a ticket (for a specific event) 
