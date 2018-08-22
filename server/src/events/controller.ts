@@ -22,7 +22,6 @@ export default class EventController {
     @Body() event: Event,
     @CurrentUser() user: User
   ) {
-    console.log('event', event)
     event.tickets = []
     return event.save()
   }

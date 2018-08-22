@@ -1,5 +1,5 @@
 import { JsonController, Get, Param, Post, HttpCode, Body, Put, NotFoundError, CurrentUser, ForbiddenError } from 'routing-controllers'
-import Ticket from './entity'
+import Ticket, { Comment } from './entity'
 import Event from '../events/entity'
 import User from '../users/entity'
 
@@ -25,7 +25,7 @@ export default class TicketController {
   // As a *logged in* customer I want to add a ticket (for a specific event) 
   //   that shows up on the event page with a title, picture, price and description
   // @Authorized()
-  @Post('/events/:id')
+  @Post('/tickets/:id')
   @HttpCode(201)
   async createTicket(
     @Body() ticket: Ticket,
@@ -54,6 +54,22 @@ export default class TicketController {
     if (ticket.user !== user) throw new ForbiddenError('You can only edit your own content!')
 
     return Ticket.merge(ticket, update).save()
+  }
+
+
+  @Post('/comments/:id')
+  @HttpCode(201)
+  async createComment(
+    @Body() comment: Comment,
+    @Param('id') ticketId, //: number,
+    @CurrentUser() user: User
+  ) {
+    const thisTicket = await Ticket.findOneById( ticketId )
+    if (!thisTicket) throw new NotFoundError(`Event does not exist`)
+
+    comment.ticket = thisTicket
+    comment.user = user
+    return comment.save()
   }
 
 }

@@ -9,7 +9,6 @@ export default function (state = null, action) {
       return action.payload
     case ADD_TICKET:
       const newTickets = [...state.tickets, action.payload]
-      console.log(newTickets, 'newTickets')
       return { ...state, tickets: newTickets }
     default:
       return state

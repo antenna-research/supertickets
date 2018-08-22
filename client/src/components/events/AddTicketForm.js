@@ -1,7 +1,6 @@
 import React, {PureComponent} from 'react'
 import {addTicket} from '../../actions/tickets'
 import {connect} from 'react-redux'
-import {withRouter} from 'react-router-dom';
 
 class AddTicketForm extends PureComponent {
   state = {}

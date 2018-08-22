@@ -9,9 +9,6 @@ class AddEventForm extends PureComponent {
   handleSubmit = (e) => {
     e.preventDefault()
     this.props.addEvent(this.state)
-    console.log('this.props.event', this.props.event)    
-    // this.props.history.push('/event/'+   )
-    // this.setState({ picture: '', price: '', description: '' }) 
   }
 
   handleChange = (event) => {

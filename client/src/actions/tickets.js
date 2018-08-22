@@ -8,6 +8,7 @@ export const GET_TICKET_DETAILS = 'GET_TICKET_DETAILS'
 export const ADD_TICKET = 'ADD_TICKET'
 export const UPDATE_TICKET = 'UPDATE_TICKET'
 export const GET_EVENT = 'GET_EVENT'
+export const ADD_COMMENT = 'ADD_COMMENT'
 
 // export const REMOVE_TICKET = 'REMOVE_TICKET'
 
@@ -38,9 +39,8 @@ export const addTicket = (eventId, ticket) => (dispatch, getState) => {
 
   if (isExpired(jwt)) return dispatch(logout())
 
-  console.log('eventId, ticket', eventId, ticket)
   request
-    .post(`${baseUrl}/events/${eventId}`)
+    .post(`${baseUrl}/tickets/${eventId}`)
     .set('Authorization', `Bearer ${jwt}`)
     .send(ticket)
     .then(response => {
@@ -51,6 +51,29 @@ export const addTicket = (eventId, ticket) => (dispatch, getState) => {
     })
     .catch(err => alert(err))
 }
+
+
+export const addComment = (ticketId, comment) => (dispatch, getState) => {
+  const state = getState()
+  if (!state.currentUser) return null
+  const jwt = state.currentUser.jwt
+
+  if (isExpired(jwt)) return dispatch(logout())
+
+  console.log('ticketId, comment', ticketId, comment)
+  request
+    .post(`${baseUrl}/comments/${ticketId}`)
+    .set('Authorization', `Bearer ${jwt}`)
+    .send(comment)
+    .then(response => {
+      dispatch({
+        type: ADD_COMMENT,
+        payload: response.body
+      })
+    })
+    .catch(err => alert(err))
+}
+
 
 export const updateTicket = (ticketId, updates) => (dispatch, getState) => {
   const state = getState()

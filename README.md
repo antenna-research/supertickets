@@ -9,27 +9,27 @@ dispatch a car to pick you up to the event.
 √ The app should have a login and signup page for customers.
 You need to login to create events, tickets and comments.
 
-Events have:
+√ Events have:
 
   - a name
   - a description
   - a picture or logo
   - a start and end date (could be the same)
 
-After you click on an event, you see a list of tickets that are offered for this event.
+√ After you click on an event, you see a list of tickets that are offered for this event.
 
-A ticket is made for a specific event and has an author (the user that created the ticket).
-Apart from that, it has:
+√ A ticket is made for a specific event and has an author (the user that created the ticket).
+√ Apart from that, it has:
   a picture of the ticket (optional field)
   a price
   a description
 
-When you click on a ticket, you see the details of that ticket (description/price) and which event it's for.
-On this page you can add comments as a customer, and everybody can see all the comments.
+* When you click on a ticket, you see the details of that ticket (description/price) **and which event it's for**.
 
-A comment has a text and is connected to a specific ticket. It also has an author.
+* On this page you can add comments as a customer, and everybody can see all the comments.
+* A comment has a text and is connected to a specific ticket. It also has an author.
 
-Anybody can view events and tickets, but you have to login to add a new ticket or comment.
+√ Anybody can view events and tickets, but you have to login to add a new ticket or comment.
 
 
 
@@ -47,9 +47,9 @@ The percentage should be calculated using the following algorithm:
 
   - if the ticket is the only ticket of the author, add 4%
   - if the ticket price is lower than the average ticket price for that event, that's a risk
-  - if a ticket is X% cheaper than the average price, add X% to the risk
-  - if a ticket is X% more expensive than the average price, deduct X% from the risk, with a maximum of 15% deduction
-  - if the ticket was added during business hours (9-17), deduct 13% from the risk, if not, add 13% to the risk
+    - if a ticket is X% cheaper than the average price, add X% to the risk
+    - if a ticket is X% more expensive than the average price, deduct X% from the risk, with a maximum of 15% deduction
+    - if the ticket was added during business hours (9-17), deduct 13% from the risk, if not, add 13% to the risk
   - if there are >3 comments on the ticket, add 6% to the risk
   - The minimal risk is 2% (there's no such thing as no risk) and the maximum risk is 98%.
 
