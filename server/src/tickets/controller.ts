@@ -7,7 +7,6 @@ import User from '../users/entity'
 @JsonController()
 export default class TicketController {
 
-  // As a customer I want to view a list of tickets when I click on an event
   @Get('/events/:id')
   getTickets(
     @Param('id') id: any
@@ -15,7 +14,6 @@ export default class TicketController {
     return Event.find({ where: { id } })
   }
 
-  // As a customer I want to view ticket details when I click on a ticket in the ticket list
   @Get('/tickets/:id')
   getTicket(
     @Param('id') id: any
@@ -51,14 +49,12 @@ export default class TicketController {
     @Body() update, // : Partial<Ticket> | undefined
     @CurrentUser() user: User
   ) {
-    const ticket = await Ticket.findOne(id)
+    const ticket = await Ticket.findOneById(id)
     if (!ticket) throw new NotFoundError('Cannot find ticket')
     if (ticket.user !== user) throw new ForbiddenError('You can only edit your own content!')
 
     return Ticket.merge(ticket, update).save()
   }
-
-
 
 }
 

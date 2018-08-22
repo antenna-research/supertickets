@@ -13,9 +13,18 @@ class EventsList extends PureComponent {
   render() {
     return (<div><ul>
       { this.props.events.map(
-        (event) => <li><a href={ `/event/${event.id}` }> { event.name }, { event.startDate }, { event.endDate } </a></li>
+        (event) => <li key={`${event.id}`}><a href={ `/event/${event.id}` }> { event.name }, { event.startDate }, { event.endDate } </a></li>
       )}
-    </ul></div>)
+    </ul>
+
+    { this.props.authenticated &&
+      <div>
+        <a href="/event/add">Add an event</a>
+      </div>
+    }
+
+
+    </div>)
   }
 
 }
@@ -23,6 +32,8 @@ class EventsList extends PureComponent {
 const mapStateToProps = function (state, props) {
   return {
     events: state.events,
+    authenticated: state.currentUser !== null,
+    // userId: state.currentUser && userId(state.currentUser.jwt),
   }
 }
 

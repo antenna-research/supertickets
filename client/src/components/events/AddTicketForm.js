@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react'
-import {addTicket, getTickets} from '../../actions/tickets'
+import {addTicket} from '../../actions/tickets'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router-dom';
 
@@ -8,7 +8,7 @@ class AddTicketForm extends PureComponent {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.addTicket(parseInt(this.props.eventId), this.state)
+    this.props.addTicket(this.props.eventId, this.state)
     this.setState({ picture: '', price: '', description: '' }) 
   }
 
@@ -51,11 +51,10 @@ class AddTicketForm extends PureComponent {
   }
 }
 
-const mapStateToProps = function (state, props) {
-  return {
-    // adverts: state.adverts,
-  }
-}
+// const mapStateToProps = function (state, props) {
+//   return {
+//     // event: state.event,
+//   }
+// }
 
-export default connect(mapStateToProps, { addTicket, getTickets })( withRouter(AddTicketForm) )
-// export default connect(mapStateToProps, { addTicket, getTickets })( AddTicketForm )
+export default connect(null, { addTicket })( AddTicketForm )

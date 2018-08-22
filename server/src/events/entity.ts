@@ -25,6 +25,6 @@ export default class Event extends BaseEntity {
   @OneToMany(type => Ticket, ticket => ticket.event, {
         eager: true
     })
-  tickets: Ticket[];
+  tickets?: Ticket[];
 
 }

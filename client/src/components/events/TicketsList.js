@@ -30,15 +30,15 @@ class TicketsList extends PureComponent {
       <h3>{ this.props.event.startDate } to { this.props.event.endDate }</h3>
       <ul>
       { tickets.map( 
-        ticket => <li><a href={ `/ticket/${ticket.id}` }> { ticket.description } </a></li>
+        ticket => <li key={ `${ticket.id}` }><a href={ `/ticket/${ticket.id}` }> { ticket.description } </a></li>
       )}
       </ul>
 
-      {  
+      { this.props.authenticated &&
         !this.state.showComponent &&
         <button onClick={this._onButtonClick}>List a ticket for this event</button>
       }
-      {  
+      { this.props.authenticated &&
         this.state.showComponent &&
         <AddTicketForm eventId={this.props.match.params.id} />
       }
@@ -51,7 +51,7 @@ class TicketsList extends PureComponent {
 
 const mapStateToProps = (state, props) => ({
   authenticated: state.currentUser !== null,
-  userId: state.currentUser && userId(state.currentUser.jwt),
+  // userId: state.currentUser && userId(state.currentUser.jwt),
   event: state.event
 })
 

@@ -38,6 +38,7 @@ export const addTicket = (eventId, ticket) => (dispatch, getState) => {
 
   if (isExpired(jwt)) return dispatch(logout())
 
+  console.log('eventId, ticket', eventId, ticket)
   request
     .post(`${baseUrl}/events/${eventId}`)
     .set('Authorization', `Bearer ${jwt}`)

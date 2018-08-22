@@ -1,6 +1,6 @@
-import { JsonController, Get, Post, HttpCode, Body } from 'routing-controllers'
+import { JsonController, Get, Post, HttpCode, Body, CurrentUser } from 'routing-controllers'
 import Event from './entity'
-
+import User from '../users/entity'
 
 @JsonController()
 export default class EventController {
@@ -19,8 +19,11 @@ export default class EventController {
   @Post('/events')
   @HttpCode(201)
   createEvent(
-    @Body() event: Event
+    @Body() event: Event,
+    @CurrentUser() user: User
   ) {
+    console.log('event', event)
+    event.tickets = []
     return event.save()
   }
 

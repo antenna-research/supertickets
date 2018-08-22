@@ -23,15 +23,38 @@ export const addEvent = (event) => (dispatch, getState) => {
 
   if (isExpired(jwt)) return dispatch(logout())
 
+  console.log('event', event)
   request
     .post(`${baseUrl}/events`)
     .set('Authorization', `Bearer ${jwt}`)
     .send(event)
     .then(response => {
-    dispatch({
-      type: ADD_EVENT,
-      payload: response.body
+      dispatch({
+        type: ADD_EVENT,
+        payload: response.body
+      })
     })
-  })
+    .catch(err => alert(err))
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
