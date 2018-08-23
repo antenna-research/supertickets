@@ -2,7 +2,6 @@ import React, {PureComponent} from 'react'
 import {withRouter} from 'react-router'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {userId} from '../../jwt'
 import {getTickets} from '../../actions/tickets'
 import AddTicketForm from './AddTicketForm'
 import dateFormat from 'dateformat'
@@ -21,6 +20,11 @@ class TicketsList extends PureComponent {
       showComponent: true,
     });
   }
+  _reset = () => {
+    this.setState({ 
+      showComponent: false,
+    })
+  }
 
   render() {
     if (this.props.event === null) return 'Loading...'
@@ -35,16 +39,16 @@ class TicketsList extends PureComponent {
       <h2>{ name }</h2>
       <h3>{ dateFormat(starts, "mmmm dS, yyyy") } to { dateFormat(ends, "mmmm dS, yyyy") }</h3>
       <p>{ description }</p>
-      <ul>
+      <ul className='ticket-list'>
       { tickets.length > 0 && tickets.map( 
         ticket => {
           let riskRating
-          if (ticket.risk < 40) { riskRating = 'low-risk' }
-          if (ticket.risk >= 40 && ticket.risk < 68) { riskRating = 'medium-risk' }
-          if (ticket.risk >= 68) { riskRating = 'high-risk' }
+          if (ticket.risk < 38) { riskRating = 'low-risk' }
+          if (ticket.risk >= 38 && ticket.risk < 72) { riskRating = 'medium-risk' }
+          if (ticket.risk >= 72) { riskRating = 'high-risk' }
           return (<li key={ `${ticket.id}` }>
-            <a href={ `/ticket/${ticket.id}` }>{ ticket.description }</a>
             <span className={`risk-level ${riskRating}`}> &bull;</span>
+            <a href={ `/ticket/${ticket.id}` }>{ ticket.description }</a>
           </li>)
         }
       ) }
@@ -56,7 +60,7 @@ class TicketsList extends PureComponent {
       }
       { this.props.authenticated &&
         this.state.showComponent &&
-        <AddTicketForm eventId={this.props.match.params.id} />
+        <AddTicketForm eventId={this.props.match.params.id} submitFunction={'submitNew'} reset={this._reset} />
       }
 
 
@@ -67,7 +71,6 @@ class TicketsList extends PureComponent {
 
 const mapStateToProps = (state, props) => ({
   authenticated: state.currentUser !== null,
-  // userId: state.currentUser && userId(state.currentUser.jwt),
   event: state.event
 })
 

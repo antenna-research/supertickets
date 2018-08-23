@@ -94,17 +94,3 @@ export const updateTicket = (ticketId, updates) => (dispatch, getState) => {
     .catch(err => alert(err))
 
 }
-
-
-// export const deleteProduct = (ticketId) => (dispatch) => {
-//   request
-//     .delete(`${baseUrl}/products/${productId}`)
-//     .then(response => {
-//       dispatch({
-//         type: REMOVE_PRODUCT,
-//         payload: productId
-//       })
-//     })
-//     .catch(err => alert(err))
-// }
-

@@ -29,7 +29,11 @@ export default class Ticket extends BaseEntity {
   @JoinColumn({ name: "event_id" })
   event: Event
 
+  @Column("int", { nullable: true })
+  user_id: number;
+
   @ManyToOne(type => User, user => user.tickets)
+  @JoinColumn({ name: "user_id" })
   user: User
 
   @CreateDateColumn()

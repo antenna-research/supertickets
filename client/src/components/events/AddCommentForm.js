@@ -20,19 +20,22 @@ class AddCommentForm extends PureComponent {
 
   render() {
     const initialValues = this.props.initialValues || {}
-    return (
-      <form onSubmit={this.handleSubmit}>
 
-        <div>
-          <label htmlFor="body" style={{ textAlign: "left" }}>Comment</label><br/>
-          <textarea id="body" name="body" rows="4" columns="50" maxLength="200" wrap="hard" value={
-            this.state.body !== undefined ? this.state.body : initialValues.body
-          } onChange={ this.handleChange } />
-        </div>
-
-        <button type="submit">Save</button>
-      </form>
-    )
+    if (!this.props.isFormVisible) {
+      return <button onClick={this.props.showForm}>Add a comment for this event</button>
+    } else {
+      return (
+        <form onSubmit={this.handleSubmit}>
+          <div>
+            <label htmlFor="body" style={{ textAlign: "left" }}>Comment</label><br/>
+            <textarea id="body" name="body" rows="4" columns="50" maxLength="200" wrap="hard" value={
+              this.state.body !== undefined ? this.state.body : initialValues.body
+            } onChange={ this.handleChange } />
+          </div>
+          <button type="submit">Save</button>
+        </form>
+      )
+    }
   }
 }
 

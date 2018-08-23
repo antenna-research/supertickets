@@ -1,5 +1,4 @@
-import { JsonController, Get, Param, Post, HttpCode, Body, Put, NotFoundError, CurrentUser, ForbiddenError } from 'routing-controllers'
-// import { getRepository } from 'typeorm'
+import { JsonController, Get, Param, Post, HttpCode, Body, Put, NotFoundError, CurrentUser, ForbiddenError, Authorized } from 'routing-controllers'
 import Ticket, { Comment } from './entity'
 import Event from '../events/entity'
 import User from '../users/entity'
@@ -34,7 +33,7 @@ export default class TicketController {
 
   // As a *logged in* customer I want to add a ticket (for a specific event) 
   //   that shows up on the event page with a title, picture, price and description
-  // @Authorized()
+  @Authorized()
   @Post('/tickets/:id')
   @HttpCode(201)
   async createTicket(
@@ -53,7 +52,7 @@ export default class TicketController {
 
   // As an author of the ticket I want to be able to edit a ticket's description, price and picture
   //   (other logged in customers cannot do this! only authors and admins)
-  // @Authorized()
+  @Authorized()
   @Put('/tickets/:id')
   async updateTicket(
     @Param('id') id, //: number,
@@ -62,9 +61,14 @@ export default class TicketController {
   ) {
     const ticket = await Ticket.findOne(id)
     if (!ticket) throw new NotFoundError('Cannot find ticket')
-    if (ticket.user !== user) throw new ForbiddenError('You can only edit your own content!')
-
-    return Ticket.merge(ticket, update).save()
+    if (ticket.user_id !== user.id) throw new ForbiddenError('You can only edit your own content!')
+    Object.keys(ticket).forEach( (key)=>{
+      if (update[key]) {
+        ticket[key] = update[key]
+      }
+    })
+    ticket.save()
+    return assessTicket(ticket)
   }
 
 
@@ -84,18 +88,3 @@ export default class TicketController {
   }
 
 }
-
-// routing-controllers
-//   JsonController
-//   Authorized
-//   CurrentUser
-//   Post
-//   Param
-//   BadRequestError
-//   HttpCode
-//   NotFoundError
-//   ForbiddenError
-//   Get
-//   Body
-//   Patch
-//   Put

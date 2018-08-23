@@ -2,18 +2,27 @@ import React, {PureComponent} from 'react'
 import {withRouter} from 'react-router'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
+import {userId} from '../../jwt'
 import {getTicketDetails} from '../../actions/tickets'
 import AddCommentForm from './AddCommentForm'
+import AddTicketForm from './AddTicketForm'
 
 class TicketDetail extends PureComponent {
   state = {
-    showComponent: false,
+    showCommentForm: false,
+    showTicketForm: false
   }
 
-  _onButtonClick = () => {
-    this.setState({
-      showComponent: true,
-    });
+  _showCommentForm = () => {
+    this.setState({ showCommentForm: true });
+  }
+
+  _showTicketForm = () => {
+    this.setState({ showTicketForm: true });
+  }
+
+  _reset = () => {
+    this.setState({ showTicketForm: false });
   }
 
   componentWillMount(props) {
@@ -21,32 +30,38 @@ class TicketDetail extends PureComponent {
   }
 
   render() {
-    if (this.props.ticket === null) return 'Loading...'
 
-    // On the ticket page for a specific ticket, we want to show a text like:
-    // "We calculated that the risk of this ticket being a fraud is XX%"
+    const ticket = this.props.ticket
+    const authenticated = this.props.authenticated
+    if (ticket === null) return 'Loading...'
 
     return (<div>
-      <h2>{this.props.ticket.description}</h2>
-      <h3>{this.props.ticket.image}</h3>
-      <h3>{this.props.ticket.price}</h3>
-      <p className="risk-assessment">We calculated that the risk of this ticket being a fraud is { this.props.ticket.risk }%</p>
+      <h2>{ticket.description}</h2>
+      <h3>{ticket.image}</h3>
+      <h3>{ticket.price}</h3>
+      { ticket.risk &&
+        <p className="risk-assessment">We calculated that the risk of this ticket being a fraud is { ticket.risk }%</p>        
+      }
 
-      { this.props.ticket.comments && this.props.ticket.comments.length > 0 &&
-        this.props.ticket.comments.map(
+      { ticket.comments && ticket.comments.length > 0 &&
+        ticket.comments.map(
           comment => <div className='comment-wrapper' key={comment.id}>
             {comment.body}
           </div>
       )}
 
-      { this.props.authenticated &&
-        !this.state.showComponent &&
-        <button onClick={this._onButtonClick}>Add a comment for this event</button>
+      { authenticated && (ticket.user_id === this.props.userId) && !this.state.showTicketForm &&
+        <button onClick={this._showTicketForm}>Edit your ticket</button>
       }
-      { this.props.authenticated &&
-        this.state.showComponent &&
-        <AddCommentForm ticketId={this.props.match.params.id} />
+      { authenticated && (ticket.user_id === this.props.userId) && this.state.showTicketForm &&
+        <AddTicketForm ticketId={this.props.match.params.id} submitFunction={'submitUpdate'} initialValues={ticket} reset={this._reset} />
       }
+
+
+      { authenticated &&
+        <AddCommentForm ticketId={this.props.match.params.id} isFormVisible={this.state.showCommentForm} showForm={this._showCommentForm} />
+      }
+
     </div>)
   }
 
@@ -55,6 +70,7 @@ class TicketDetail extends PureComponent {
 const mapStateToProps = function (state, props) {
   return {
     authenticated: state.currentUser !== null,
+    userId: state.currentUser && userId(state.currentUser.jwt),
     ticket: state.ticket,
   }
 }

@@ -1,14 +1,21 @@
 import React, {PureComponent} from 'react'
-import {addTicket} from '../../actions/tickets'
+import {addTicket,updateTicket} from '../../actions/tickets'
 import {connect} from 'react-redux'
 
 class AddTicketForm extends PureComponent {
   state = {}
 
-  handleSubmit = (e) => {
+  submitNew = (e) => {
     e.preventDefault()
     this.props.addTicket(this.props.eventId, this.state)
-    this.setState({ picture: '', price: '', description: '' }) 
+    this.setState({ picture: '', price: '', description: '' })
+    this.props.reset()
+  }
+
+  submitUpdate = (e) => {
+    e.preventDefault()
+    this.props.updateTicket(this.props.ticketId, this.state)
+    this.props.reset()
   }
 
   handleChange = (event) => {
@@ -21,7 +28,7 @@ class AddTicketForm extends PureComponent {
   render() {
     const initialValues = this.props.initialValues || {}
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this[this.props.submitFunction]}>
 
         <div>
           <label htmlFor="picture">Image url</label>
@@ -50,10 +57,4 @@ class AddTicketForm extends PureComponent {
   }
 }
 
-// const mapStateToProps = function (state, props) {
-//   return {
-//     // event: state.event,
-//   }
-// }
-
-export default connect(null, { addTicket })( AddTicketForm )
+export default connect(null, { addTicket, updateTicket })( AddTicketForm )
