@@ -34,7 +34,7 @@ You need to login to create events, tickets and comments.
 
 ## User stories
 
-  - As a customer I want to see max. 4 events on a page
+  √ As a customer I want to see max. 4 events on a page
       and be able to click 'next' to see more pages of events if there are more.
   - As a customer I only want to see events that are not finished yet
   √ As a customer I want to view a list of tickets when I click on an event

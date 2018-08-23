@@ -13,7 +13,6 @@ class EventsList extends PureComponent {
   _forwardClick = () => {
     if (!this.state.isLastPage) {
       const newPage = this.state.page+1
-      console.log('newPage*4', newPage*4, '<= this.props.events.length', this.props.events.length)
       if (newPage*4 >= this.props.events.length) {
         this.setState({ page: newPage, isLastPage: true })
       } else {
@@ -40,8 +39,6 @@ class EventsList extends PureComponent {
   render() {
     const firstEvent = (this.state.page-1) * 4
     const lastEvent = Math.min(this.state.page*4, this.props.events.length)
-    console.log('firstEvent', firstEvent, 'lastEvent', lastEvent)
-    console.log('this.props.events.slice(firstEvent, lastEvent)', this.props.events.slice(firstEvent, lastEvent))
     return (<div><ul>
       { this.props.events.slice(firstEvent, lastEvent).map(
         (event) => <li key={`${event.id}`}><a href={ `/event/${event.id}` }> { event.name }, { event.startDate }, { event.endDate } </a></li>

@@ -45,7 +45,7 @@ useKoaServer(app, {
       
       if (token) {
         const {id} = verify(token)
-        return User.findOneById(id)
+        return User.findOne(id)
       }
     }
     return undefined

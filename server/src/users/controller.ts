@@ -22,7 +22,7 @@ export default class UserController {
   getUser(
     @Param('id') id: number
   ) {
-    return User.findOneById(id)
+    return User.findOne(id)
   }
 
   @Authorized()

@@ -5,6 +5,7 @@ import {connect} from 'react-redux'
 import {userId} from '../../jwt'
 import {getTickets} from '../../actions/tickets'
 import AddTicketForm from './AddTicketForm'
+import dateFormat from 'dateformat'
 
 class TicketsList extends PureComponent {
   state = {
@@ -24,10 +25,16 @@ class TicketsList extends PureComponent {
   render() {
     if (this.props.event === null) return 'Loading...'
 
+    const name = this.props.event.name
+    const description = this.props.event.description
+    const starts = new Date(this.props.event.startDate)
+    const ends = new Date(this.props.event.endDate)
     const tickets = this.props.event.tickets
+
     return (<div>
-      <h2>{ this.props.event.name }</h2>
-      <h3>{ this.props.event.startDate } to { this.props.event.endDate }</h3>
+      <h2>{ name }</h2>
+      <h3>{ dateFormat(starts, "mmmm dS, yyyy") } to { dateFormat(ends, "mmmm dS, yyyy") }</h3>
+      <p>{ description }</p>
       <ul>
       { tickets.length > 0 && tickets.map( 
         ticket => {

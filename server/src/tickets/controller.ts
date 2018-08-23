@@ -13,7 +13,7 @@ export default class TicketController {
     @Param('id') id: any,
     @CurrentUser() user: User
   ) {
-    const thisEvent = await Event.findOneById( id )
+    const thisEvent = await Event.findOne( id )
     if (!thisEvent) throw new NotFoundError(`Event does not exist`)
 
     if (thisEvent.tickets && thisEvent.tickets.length > 0) {
@@ -28,7 +28,7 @@ export default class TicketController {
   async getTicket(
     @Param('id') ticketId: any
   ) {
-    const thisTicket = await Ticket.findOneById( ticketId )
+    const thisTicket = await Ticket.findOne( ticketId )
     return assessTicket(thisTicket)
   }
 
@@ -42,7 +42,7 @@ export default class TicketController {
     @Param('id') eventId, //: number,
     @CurrentUser() user: User
   ) {
-    const thisEvent = await Event.findOneById( eventId )
+    const thisEvent = await Event.findOne( eventId )
     if (!thisEvent) throw new NotFoundError(`Event does not exist`)
 
     ticket.event = thisEvent
@@ -60,7 +60,7 @@ export default class TicketController {
     @Body() update, // : Partial<Ticket> | undefined
     @CurrentUser() user: User
   ) {
-    const ticket = await Ticket.findOneById(id)
+    const ticket = await Ticket.findOne(id)
     if (!ticket) throw new NotFoundError('Cannot find ticket')
     if (ticket.user !== user) throw new ForbiddenError('You can only edit your own content!')
 
@@ -75,7 +75,7 @@ export default class TicketController {
     @Param('id') ticketId, //: number,
     @CurrentUser() user: User
   ) {
-    const thisTicket = await Ticket.findOneById( ticketId )
+    const thisTicket = await Ticket.findOne( ticketId )
     if (!thisTicket) throw new NotFoundError(`Event does not exist`)
 
     comment.ticket = thisTicket

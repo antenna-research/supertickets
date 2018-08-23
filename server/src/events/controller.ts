@@ -1,6 +1,7 @@
 import { JsonController, Get, Post, HttpCode, Body, CurrentUser } from 'routing-controllers'
 import Event from './entity'
 import User from '../users/entity'
+import { getManager, Not, LessThan } from 'typeorm'
 
 @JsonController()
 export default class EventController {
@@ -9,8 +10,13 @@ export default class EventController {
   //   and be able to click 'next' to see more pages of events if there are more.
   @Get('/events')
   async allEvents() {
-    const events = await Event.find()
-    return { events }
+    const entityManager = getManager();
+    let today = new Date()
+    today.setHours(0,0,0,0)
+    const events = await entityManager.find(Event, {
+      endDate: Not(LessThan(today))
+    })
+    return events
   }
 
   // As a logged in customer I want to be able to create events
@@ -23,6 +29,7 @@ export default class EventController {
     @CurrentUser() user: User
   ) {
     event.tickets = []
+    event.endDate = new Date(event.endDate)
     return event.save()
   }
 
