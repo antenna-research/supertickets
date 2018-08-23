@@ -40,7 +40,6 @@ This is an important part of the assignment. If you only finish one thing, it sh
 Tickets can be fraudulent, and as a customer I don't want to buy a fake ticket! Because of that we want to show to customers the risk that they are taking when buying the ticket.
 
 On the ticket page for a specific ticket, we want to show a text like:
-
 "We calculated that the risk of this ticket being a fraud is XX%"
 
 The percentage should be calculated using the following algorithm:
@@ -58,15 +57,15 @@ The percentage should be calculated using the following algorithm:
   - As a customer I want to see max. 4 events on a page
       and be able to click 'next' to see more pages of events if there are more.
   - As a customer I only want to see events that are not finished yet
-  - As a customer I want to view a list of tickets when I click on an event
-  - As a customer I want to view ticket details when I click on a ticket in the ticket list
+  √ As a customer I want to view a list of tickets when I click on an event
+  √ As a customer I want to view ticket details when I click on a ticket in the ticket list
   - As a customer I want to see what the fraud-risk is for a specific ticket
   √ As a customer I want to be able to login, or sign up if I don't have an account yet
-  - As a logged in customer I want to add a ticket (for a specific event) 
+  √ As a logged in customer I want to add a ticket (for a specific event) 
       that shows up on the event page with a title, picture, price and description
   - As an author of the ticket I want to be able to edit a ticket's description, price and picture
       (other logged in customers cannot do this! only authors and admins)
-  - As a logged in customer I want to be able to create events
+  √ As a logged in customer I want to be able to create events
       with a name, picture (logo), date and description
   - As a customer I can see some color (red/yellow/green) indicating the fraud risk
       of a ticket for all tickets in the all tickets list
@@ -86,17 +85,8 @@ The percentage should be calculated using the following algorithm:
 
 ## Tools and technology
 
-We recommend to use starter kits that we provided during the program to start this app.
-In terms of backend (server) technology, you can work with any NodeJS backend: JavaScript or Typescript,
-Express, Koa or routing-controllers is up to you. The API should be following the better part of the REST
-principles.
-
-For the frontend, we expect you to properly use React and Redux. Make sure you use the Redux store to
-your advantage! Use either create-react-app or one of the starter kits that you've used before.
 Feel free to add any packages that you like. E.g. MaterialUI can be used to set up a nice layout (maybe
 even responsive!) but there are perfect alternatives as well.
-
-
 
 
 
@@ -108,7 +98,5 @@ create a Bitbucket account (it's like Github, but they offer free private reposi
 create a private repo and push your assignment to it regularly (so even if your computer breaks you
 will have a backup and we can see your progress!)
 invite teachers@codaisseur.com (username: codaisseur-teachers) to join the repository
-We don't want you to publish the code of your final assignment on GitHub during the week to prevent
-people from copying each others work.
 
 

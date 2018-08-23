@@ -1,28 +1,17 @@
-.App {
-  text-align: center;
+span.risk-level {
+  font-size: 300%;
+  line-height: 0.18;
+  vertical-align: bottom;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+span.low-risk {
+  color: green;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+span.medium-risk {
+  color: orange;
 }
 
-.App-title {
-  font-size: 1.5em;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+span.high-risk {
+  color: red;
 }

@@ -23,17 +23,21 @@ class TicketDetail extends PureComponent {
   render() {
     if (this.props.ticket === null) return 'Loading...'
 
+    // On the ticket page for a specific ticket, we want to show a text like:
+    // "We calculated that the risk of this ticket being a fraud is XX%"
+
     return (<div>
       <h2>{this.props.ticket.description}</h2>
       <h3>{this.props.ticket.image}</h3>
       <h3>{this.props.ticket.price}</h3>
+      <p className="risk-assessment">We calculated that the risk of this ticket being a fraud is { this.props.ticket.risk }%</p>
+
       { this.props.ticket.comments && this.props.ticket.comments.length > 0 &&
         this.props.ticket.comments.map(
-          comment => <div className='comment-wrapper'>
+          comment => <div className='comment-wrapper' key={comment.id}>
             {comment.body}
           </div>
       )}
-
 
       { this.props.authenticated &&
         !this.state.showComponent &&

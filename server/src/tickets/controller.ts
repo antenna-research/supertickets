@@ -1,25 +1,35 @@
 import { JsonController, Get, Param, Post, HttpCode, Body, Put, NotFoundError, CurrentUser, ForbiddenError } from 'routing-controllers'
+// import { getRepository } from 'typeorm'
 import Ticket, { Comment } from './entity'
 import Event from '../events/entity'
 import User from '../users/entity'
-
+import { assessTickets, assessTicket } from './assessRisk'
 
 @JsonController()
 export default class TicketController {
 
   @Get('/events/:id')
-  getTickets(
-    @Param('id') id: any
+  async getTickets(
+    @Param('id') id: any,
+    @CurrentUser() user: User
   ) {
-    return Event.find({ where: { id } })
+    const thisEvent = await Event.findOneById( id )
+    if (!thisEvent) throw new NotFoundError(`Event does not exist`)
+
+    if (thisEvent.tickets && thisEvent.tickets.length > 0) {
+      const averagePrice = thisEvent.tickets.reduce( (total=0, ticket) => { return total + Number(ticket.price) }, 0 ) / thisEvent.tickets.length      
+      const assessedTickets = await assessTickets(thisEvent.tickets, averagePrice)
+      return { ...thisEvent, tickets: assessedTickets }
+    }
+    // return thisEvent
   }
 
   @Get('/tickets/:id')
-  getTicket(
-    @Param('id') id: any
+  async getTicket(
+    @Param('id') ticketId: any
   ) {
-    return Ticket.find({ where: { id } })
-    console.log('id', id)
+    const thisTicket = await Ticket.findOneById( ticketId )
+    return assessTicket(thisTicket)
   }
 
   // As a *logged in* customer I want to add a ticket (for a specific event) 
@@ -37,6 +47,7 @@ export default class TicketController {
 
     ticket.event = thisEvent
     ticket.user = user
+    ticket.price = parseFloat(ticket.price.toString())
     return ticket.save()
   }
 

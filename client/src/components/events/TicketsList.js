@@ -30,8 +30,17 @@ class TicketsList extends PureComponent {
       <h3>{ this.props.event.startDate } to { this.props.event.endDate }</h3>
       <ul>
       { tickets.map( 
-        ticket => <li key={ `${ticket.id}` }><a href={ `/ticket/${ticket.id}` }> { ticket.description } </a></li>
-      )}
+        ticket => {
+          let riskRating
+          if (ticket.risk < 40) { riskRating = 'low-risk' }
+          if (ticket.risk >= 40 && ticket.risk < 68) { riskRating = 'medium-risk' }
+          if (ticket.risk >= 68) { riskRating = 'high-risk' }
+          return (<li key={ `${ticket.id}` }>
+            <a href={ `/ticket/${ticket.id}` }>{ ticket.description }</a>
+            <span className={`risk-level ${riskRating}`}> &bull;</span>
+          </li>)
+        }
+      ) }
       </ul>
 
       { this.props.authenticated &&

@@ -17,7 +17,7 @@ export const getTickets = (eventId) => (dispatch) => {
     .get(`${baseUrl}/events/${eventId}`)
     .then(response => dispatch({
       type: GET_EVENT,
-      payload: response.body[0]
+      payload: response.body
     }))
     .catch(err => alert(err))
 }
@@ -27,7 +27,7 @@ export const getTicketDetails = (ticketId) => (dispatch) => {
     .get(`${baseUrl}/tickets/${ticketId}`)
     .then(response => dispatch({
       type: GET_TICKET_DETAILS,
-      payload: response.body[0]
+      payload: response.body
     }))
     .catch(err => alert(err))
 }
@@ -60,7 +60,6 @@ export const addComment = (ticketId, comment) => (dispatch, getState) => {
 
   if (isExpired(jwt)) return dispatch(logout())
 
-  console.log('ticketId, comment', ticketId, comment)
   request
     .post(`${baseUrl}/comments/${ticketId}`)
     .set('Authorization', `Bearer ${jwt}`)
