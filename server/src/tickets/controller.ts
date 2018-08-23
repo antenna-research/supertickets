@@ -21,7 +21,7 @@ export default class TicketController {
       const assessedTickets = await assessTickets(thisEvent.tickets, averagePrice)
       return { ...thisEvent, tickets: assessedTickets }
     }
-    // return thisEvent
+    return thisEvent
   }
 
   @Get('/tickets/:id')

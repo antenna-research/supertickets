@@ -10,14 +10,14 @@ class TicketDetail extends PureComponent {
     showComponent: false,
   }
 
-  componentWillMount(props) {
-    this.props.getTicketDetails( this.props.match.params.id )
-  }
-
   _onButtonClick = () => {
     this.setState({
       showComponent: true,
     });
+  }
+
+  componentWillMount(props) {
+    this.props.getTicketDetails( this.props.match.params.id )
   }
 
   render() {
