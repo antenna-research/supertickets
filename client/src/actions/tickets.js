@@ -10,8 +10,6 @@ export const UPDATE_TICKET = 'UPDATE_TICKET'
 export const GET_EVENT = 'GET_EVENT'
 export const ADD_COMMENT = 'ADD_COMMENT'
 
-// export const REMOVE_TICKET = 'REMOVE_TICKET'
-
 export const getTickets = (eventId) => (dispatch) => {
   request
     .get(`${baseUrl}/events/${eventId}`)

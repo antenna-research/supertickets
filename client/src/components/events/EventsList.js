@@ -3,6 +3,7 @@ import {withRouter} from 'react-router'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {getEvents} from '../../actions/events'
+import dateFormat from 'dateformat'
 
 class EventsList extends PureComponent {
   state = {
@@ -39,14 +40,21 @@ class EventsList extends PureComponent {
   render() {
     const firstEvent = (this.state.page-1) * 4
     const lastEvent = Math.min(this.state.page*4, this.props.events.length)
-    return (<div><ul>
+    return (<div><ul className='app-list'>
       { this.props.events.slice(firstEvent, lastEvent).map(
-        (event) => <li key={`${event.id}`}><a href={ `/event/${event.id}` }> { event.name }, { event.startDate }, { event.endDate } </a></li>
+        (event) => <li key={`${event.id}`}>
+          <a href={ `/event/${event.id}` }>
+            <span className="event-name">{ event.name }</span>
+            <span className="event-date">{ dateFormat(event.startDate, "mmmm d") } &ndash; { dateFormat(event.endDate, "mmmm d, yyyy") }</span>
+          </a>
+        </li>
       )}
     </ul>
 
-    <button onClick={this._backwardClick}>&#8592;</button>
-    <button onClick={this._forwardClick}>&#8594;</button>
+    <div className="event-pagination">
+      <button className="prev" onClick={this._backwardClick}>&#8592;</button>
+      <button className="next" onClick={this._forwardClick}>&#8594;</button>
+    </div>
 
     { this.props.authenticated &&
       <div>
@@ -63,7 +71,6 @@ const mapStateToProps = function (state, props) {
   return {
     events: state.events,
     authenticated: state.currentUser !== null,
-    // userId: state.currentUser && userId(state.currentUser.jwt),
   }
 }
 

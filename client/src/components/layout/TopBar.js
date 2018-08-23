@@ -8,9 +8,7 @@ const TopBar = (props) => {
 
   return (<div position="absolute" style={{zIndex:10}}>
     <div>
-      <span variant="title" color="inherit" style={{flex: 1}}>
-        Super Tickets
-      </span>
+      <h1>Super Tickets</h1>
       {
         user &&
         <button color="inherit"> { user.firstName }</button>
@@ -23,10 +21,6 @@ const TopBar = (props) => {
       {
         location.pathname.indexOf('login') > 0 &&
         <button color="inherit" onClick={() => history.push('/signup')}>Sign up</button>
-      }
-      {
-        // /games$/.test(location.pathname) &&
-        // <Button color="inherit" onClick={() => history.push('/logout')}>Log out</Button>
       }
     </div>
   </div>)

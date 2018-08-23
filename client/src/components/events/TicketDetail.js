@@ -36,19 +36,24 @@ class TicketDetail extends PureComponent {
     if (ticket === null) return 'Loading...'
 
     return (<div>
-      <h2>{ticket.description}</h2>
-      <h3>{ticket.image}</h3>
-      <h3>{ticket.price}</h3>
+      <h4>Ticket Detail</h4>
+      <h3>{ticket.description}</h3>
+      <h3>Price: €{Number(ticket.price).toFixed(2) }</h3>
       { ticket.risk &&
         <p className="risk-assessment">We calculated that the risk of this ticket being a fraud is { ticket.risk }%</p>        
       }
 
       { ticket.comments && ticket.comments.length > 0 &&
-        ticket.comments.map(
-          comment => <div className='comment-wrapper' key={comment.id}>
-            {comment.body}
-          </div>
-      )}
+        <div className="comments">
+        <h4>Comments</h4>
+          {
+          ticket.comments.map(
+            comment => <div className='comment-wrapper' key={comment.id}>
+              {comment.body}
+            </div>
+          )}
+        </div>
+      }
 
       { authenticated && (ticket.user_id === this.props.userId) && !this.state.showTicketForm &&
         <button onClick={this._showTicketForm}>Edit your ticket</button>

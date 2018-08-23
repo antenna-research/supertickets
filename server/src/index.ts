@@ -9,7 +9,6 @@ import { verify } from './jwt'
 import User from './users/entity'
 import * as Koa from 'koa'
 import {Server} from 'http'
-// import {secret} from './jwt'
 
 const app = new Koa()
 const server = new Server(app.callback())

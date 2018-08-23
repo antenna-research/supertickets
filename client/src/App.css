@@ -1,27 +1,99 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700');
 
+body {
+  font-family: 'Varela Round', sans-serif !important;
+}
 
-.ticket-list li {
-  line-height: 1.2em;
+div#root {
+  margin: 0 2em 1em;
+}
+
+h1 {
+  border-bottom: 2px black solid;
+}
+
+h2 {
+  font-weight: 500;
+  font-size: 20px;
+}
+
+h3 {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+h4 {
+  border-bottom: 1px black solid;
+}
+
+span.event-name {
+  min-width: 180px;
+  display: inline-block;
+  padding-right: 20px;
+}
+
+span.event-date {
+}
+
+div.event-pagination {
+  position: absolute;
+  top: 23px;
+  left: 232px;
+}
+
+div.event-pagination button.prev {
+  border: 1px solid black;
+}
+
+div.event-pagination button.next {
+  border: 1px solid black;
+  margin: 0;
+  position: relative;
+  left: -1px;
+  z-index: 0;
+}
+
+p.risk-assessment {
+  font-weight: 700;
+  font-size: 12px;
+}
+
+div.comments {
+  margin: 40px 0 10px;
+}
+
+div.comment-wrapper {
+  font-size: 12px;
+  line-height: 1.4;
+  padding-bottom: 12px;
+  border-bottom: 1px dashed #CCC;
+  margin-bottom: 12px;
+}
+
+.app-list {
+  padding: 0;
+  height: 5em;
+}
+
+.app-list li {
+  line-height: 1.4em;
   list-style-type: none;
 }
+
+.app-list li a, .app-list li a span {
+  color: black;
+  text-decoration: none;
+} 
+
+.app-list li a:hover, .app-list li a:hover span {
+  text-decoration: underline;
+} 
 
 .ticket-list li > * {
   vertical-align: top;
 }
 
-.ticket-list li a {
-  color: black;
-  text-decoration: none;
-} 
-
-.ticket-list li a:hover {
-  text-decoration: underline;
-} 
-
 span.risk-level {
-  font-size: 44px;
-  line-height: 4px;
-  vertical-align: middle !important;
   color: transparent;
 }
 

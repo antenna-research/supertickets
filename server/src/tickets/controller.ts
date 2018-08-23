@@ -31,14 +31,12 @@ export default class TicketController {
     return assessTicket(thisTicket)
   }
 
-  // As a *logged in* customer I want to add a ticket (for a specific event) 
-  //   that shows up on the event page with a title, picture, price and description
   @Authorized()
   @Post('/tickets/:id')
   @HttpCode(201)
   async createTicket(
     @Body() ticket: Ticket,
-    @Param('id') eventId, //: number,
+    @Param('id') eventId,
     @CurrentUser() user: User
   ) {
     const thisEvent = await Event.findOne( eventId )
@@ -50,13 +48,11 @@ export default class TicketController {
     return ticket.save()
   }
 
-  // As an author of the ticket I want to be able to edit a ticket's description, price and picture
-  //   (other logged in customers cannot do this! only authors and admins)
   @Authorized()
   @Put('/tickets/:id')
   async updateTicket(
-    @Param('id') id, //: number,
-    @Body() update, // : Partial<Ticket> | undefined
+    @Param('id') id,
+    @Body() update,
     @CurrentUser() user: User
   ) {
     const ticket = await Ticket.findOne(id)
@@ -76,7 +72,7 @@ export default class TicketController {
   @HttpCode(201)
   async createComment(
     @Body() comment: Comment,
-    @Param('id') ticketId, //: number,
+    @Param('id') ticketId,
     @CurrentUser() user: User
   ) {
     const thisTicket = await Ticket.findOne( ticketId )

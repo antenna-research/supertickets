@@ -37,9 +37,16 @@ class TicketsList extends PureComponent {
 
     return (<div>
       <h2>{ name }</h2>
-      <h3>{ dateFormat(starts, "mmmm dS, yyyy") } to { dateFormat(ends, "mmmm dS, yyyy") }</h3>
+      {
+        starts.valueOf() !== ends.valueOf() &&
+        <h3>Starts: { dateFormat(starts, "mmmm dS, yyyy") }<br/>Ends: { dateFormat(ends, "mmmm dS, yyyy") }</h3>
+      }      
+      {
+        starts.valueOf() === ends.valueOf() &&
+        <h3>{ dateFormat(starts, "mmmm dS, yyyy") }</h3>
+      }
       <p>{ description }</p>
-      <ul className='ticket-list'>
+      <ul className='app-list ticket-list'>
       { tickets.length > 0 && tickets.map( 
         ticket => {
           let riskRating
@@ -47,7 +54,7 @@ class TicketsList extends PureComponent {
           if (ticket.risk >= 38 && ticket.risk < 72) { riskRating = 'medium-risk' }
           if (ticket.risk >= 72) { riskRating = 'high-risk' }
           return (<li key={ `${ticket.id}` }>
-            <span className={`risk-level ${riskRating}`}> &bull;</span>
+            <span className={`risk-level ${riskRating}`}>&#9679; </span>
             <a href={ `/ticket/${ticket.id}` }>{ ticket.description }</a>
           </li>)
         }

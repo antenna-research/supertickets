@@ -6,20 +6,20 @@ dispatch a car to pick you up to the event.
 
 ## Description
 
-√ The app should have a login and signup page for customers.
+- The app should have a login and signup page for customers.
 You need to login to create events, tickets and comments.
 
-√ Events have:
+- Events have:
 
   - a name
   - a description
   - a picture or logo
   - a start and end date (could be the same)
 
-√ After you click on an event, you see a list of tickets that are offered for this event.
+- After you click on an event, you see a list of tickets that are offered for this event.
 
-√ A ticket is made for a specific event and has an author (the user that created the ticket).
-√ Apart from that, it has:
+- A ticket is made for a specific event and has an author (the user that created the ticket).
+- Apart from that, it has:
   a picture of the ticket (optional field)
   a price
   a description
@@ -29,25 +29,25 @@ You need to login to create events, tickets and comments.
 * On this page you can add comments as a customer, and everybody can see all the comments.
 * A comment has a text and is connected to a specific ticket. It also has an author.
 
-√ Anybody can view events and tickets, but you have to login to add a new ticket or comment.
+- Anybody can view events and tickets, but you have to login to add a new ticket or comment.
 
 
 ## User stories
 
-  √ As a customer I want to see max. 4 events on a page
+  - As a customer I want to see max. 4 events on a page
       and be able to click 'next' to see more pages of events if there are more.
-  √ As a customer I only want to see events that are not finished yet
-  √ As a customer I want to view a list of tickets when I click on an event
-  √ As a customer I want to view ticket details when I click on a ticket in the ticket list
-  √ As a customer I want to see what the fraud-risk is for a specific ticket
-  √ As a customer I want to be able to login, or sign up if I don't have an account yet
-  √ As a logged in customer I want to add a ticket (for a specific event) 
+  - As a customer I only want to see events that are not finished yet
+  - As a customer I want to view a list of tickets when I click on an event
+  - As a customer I want to view ticket details when I click on a ticket in the ticket list
+  - As a customer I want to see what the fraud-risk is for a specific ticket
+  - As a customer I want to be able to login, or sign up if I don't have an account yet
+  - As a logged in customer I want to add a ticket (for a specific event) 
       that shows up on the event page with a title, picture, price and description
   - As an author of the ticket I want to be able to edit a ticket's description, price and picture
       (other logged in customers cannot do this! only authors and admins)
-  √ As a logged in customer I want to be able to create events
+  - As a logged in customer I want to be able to create events
       with a name, picture (logo), date and description
-  √ As a customer I can see some color (red/yellow/green) indicating the fraud risk
+  - As a customer I can see some color (red/yellow/green) indicating the fraud risk
       of a ticket for all tickets in the all tickets list
 
 
