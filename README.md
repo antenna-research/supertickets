@@ -73,17 +73,6 @@ The percentage should be calculated using the following algorithm:
 
 
 
-## Bonus stories
-  - Only admins should be able to create, edit and delete events
-  - As an admin I should be able to delete any comment and edit/delete any ticket
-  - As a mobile visitor I want to have a joyfull experience (responsive!)
-  - As a customer I want to be able to filter and search in the list of events
-  - As a customer I want to be able to sort the list of tickets on author and price
-  - As a customer I want to install this as an app on my phone
-  - Use the Uber API to dispatch an Uber when you buy a ticket
-
-
-
 ## Tools and technology
 
 Feel free to add any packages that you like. E.g. MaterialUI can be used to set up a nice layout (maybe

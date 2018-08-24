@@ -15,12 +15,12 @@ const TopBar = (props) => {
       }
 
       {
-        location.pathname.indexOf('signup') > 0 &&
-        <button color="inherit" onClick={() => history.push('/login')}>Login</button>
+        !(location.pathname.indexOf('login') > 0) &&
+        <button id="login-button" color="inherit" onClick={() => history.push('/login')}>Login</button>
       }
       {
-        location.pathname.indexOf('login') > 0 &&
-        <button color="inherit" onClick={() => history.push('/signup')}>Sign up</button>
+        !(location.pathname.indexOf('signup') > 0) &&
+        <button id="signup-button" color="inherit" onClick={() => history.push('/signup')}>Sign up</button>
       }
     </div>
   </div>)

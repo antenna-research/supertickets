@@ -8,6 +8,18 @@ div#root {
   margin: 0 2em 1em;
 }
 
+#login-button {
+  position: absolute;
+  top: 23px;
+  right: 132px;
+}
+
+#signup-button {
+  position: absolute;
+  top: 23px;
+  right: 50px;
+}
+
 h1 {
   border-bottom: 2px black solid;
 }
