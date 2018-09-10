@@ -48,7 +48,21 @@ useKoaServer(app, {
       }
     }
     return undefined
-  }
+  },
+
+  // isAdminChecker: async (action: Action) => {
+  //   const header: string = action.request.headers.authorization
+  //   if (header && header.startsWith('Bearer ')) {
+  //     const [ , token ] = header.split(' ')
+  
+  //     if (token) {
+  //       const {id} = verify(token)
+  //       return User.findOne(id)
+  //     }
+  //   }
+  //   return undefined
+  // }
+
 })
 
 setupDb()

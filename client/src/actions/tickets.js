@@ -71,7 +71,6 @@ export const addComment = (ticketId, comment) => (dispatch, getState) => {
     .catch(err => alert(err))
 }
 
-
 export const updateTicket = (ticketId, updates) => (dispatch, getState) => {
   const state = getState()
   if (!state.currentUser) return null

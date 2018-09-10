@@ -52,7 +52,7 @@ export const assessTickets = async (tickets, averagePrice) => {
       return assessRisk(priceRatio, isOnlyTicketFromUser, ticketCreated, numberComments)
     }
   )
-  return await Promise.all(assessments).then(function(values) {
+  return Promise.all(assessments).then(function(values) {
     return tickets.map( (ticket, i) => { return {...ticket, risk:values[i] } })
   })
 }
