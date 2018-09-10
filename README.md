@@ -72,21 +72,3 @@ The percentage should be calculated using the following algorithm:
   - The minimal risk is 2% (there's no such thing as no risk) and the maximum risk is 98%.
 
 
-
-## Tools and technology
-
-Feel free to add any packages that you like. E.g. MaterialUI can be used to set up a nice layout (maybe
-even responsive!) but there are perfect alternatives as well.
-
-
-
-## Hand-in and evaluation
-
-You will receive a time slot for a final evaluation talk on Friday. Before you show up on Friday, you should
-share the code of your assignment (frontend + backend) with us:
-create a Bitbucket account (it's like Github, but they offer free private repositories)
-create a private repo and push your assignment to it regularly (so even if your computer breaks you
-will have a backup and we can see your progress!)
-invite teachers@codaisseur.com (username: codaisseur-teachers) to join the repository
-
-
